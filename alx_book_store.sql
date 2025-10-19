@@ -59,4 +59,4 @@ CREATE TABLE IF NOT EXISTS Order_Details (
     FOREIGN KEY (order_id) REFERENCES Orders(order_id),
     -- Foreign Key constraint linking order details to books
     FOREIGN KEY (book_id) REFERENCES Books(book_id)
-);
+); 
