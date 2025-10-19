@@ -3,7 +3,7 @@ USE alx_book_store;
 
 -- 1. Authors Table
 -- Stores information about authors.
-CREATE TABLE IF NOT EXISTS AUTHORS (
+CREATE TABLE IF NOT EXISTS Authors (
     author_id INT PRIMARY KEY,
     author_name VARCHAR(215) NOT NULL
 );
