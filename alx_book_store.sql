@@ -1,11 +1,8 @@
--- alx_book_store.sql
+-- alx_book_store.sql (REVISED)
 
 -- 1. DATABASE CREATION
--- Drop the database if it already exists to ensure a clean start
-DROP DATABASE IF EXISTS alx_book_store;
-
--- Create the database
-CREATE DATABASE alx_book_store;
+-- Create the database only if it doesn't already exist
+CREATE DATABASE IF NOT EXISTS alx_book_store;
 
 -- Use the newly created database
 USE alx_book_store;
@@ -14,13 +11,15 @@ USE alx_book_store;
 -- 2. TABLE CREATION
 
 -- Authors Table
-CREATE TABLE Authors (
+-- Stores information about authors.
+CREATE TABLE IF NOT EXISTS Authors (
     author_id INT PRIMARY KEY,
     author_name VARCHAR(215) NOT NULL
 );
 
 -- Books Table
-CREATE TABLE Books (
+-- Stores information about books available in the bookstore.
+CREATE TABLE IF NOT EXISTS Books (
     book_id INT PRIMARY KEY,
     title VARCHAR(130) NOT NULL,
     author_id INT,
@@ -31,15 +30,17 @@ CREATE TABLE Books (
 );
 
 -- Customers Table
-CREATE TABLE Customers (
+-- Stores information about customers.
+CREATE TABLE IF NOT EXISTS Customers (
     customer_id INT PRIMARY KEY,
     customer_name VARCHAR(215) NOT NULL,
-    email VARCHAR(215) NOT NULL UNIQUE, -- Email should likely be unique
+    email VARCHAR(215) NOT NULL UNIQUE,
     address TEXT
 );
 
 -- Orders Table
-CREATE TABLE Orders (
+-- Stores information about orders placed by customers.
+CREATE TABLE IF NOT EXISTS Orders (
     order_id INT PRIMARY KEY,
     customer_id INT,
     order_date DATE NOT NULL,
@@ -47,8 +48,9 @@ CREATE TABLE Orders (
     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
--- Order_Details Table (Junction table for the many-to-many relationship between Orders and Books)
-CREATE TABLE Order_Details (
+-- Order_Details Table
+-- Stores information about the books included in each order.
+CREATE TABLE IF NOT EXISTS Order_Details (
     orderdetailid INT PRIMARY KEY,
     order_id INT,
     book_id INT,
